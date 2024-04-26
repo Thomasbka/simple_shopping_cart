@@ -2,13 +2,8 @@ var updateSubTotalPrice = function (ele) {
   var price = parseFloat($(ele).find('.price input').val());
   var quantity = parseFloat($(ele).find('.quantity input').val());
   
-  if (isNaN(price) || isNaN(quantity)) {
-    console.error('Invalid input for price or quantity');
-    return;
-  }
-
   var subTotalPrice = price * quantity;
-  $(ele).children('.totalItemPrice').html(totalItemPrice.toFixed(2));
+  $(ele).find('.total').text(subTotalPrice.toFixed(2));
 
   return subTotalPrice;
 }
@@ -16,6 +11,18 @@ var updateSubTotalPrice = function (ele) {
 var updateShoppingCartValue = function () {
   var subTotalPrice = [];
 }
+
+$(document).ready(function () {
+  $('tr').each(function() {
+    updateSubTotalPrice(this);
+  });
+
+  $(document).on('input', '.price input, .quantity input', function() {
+    var row = $(this).closest('tr');
+    updateSubTotalPrice(row);
+  });
+});
+
 
 $(document).ready(function () {
   updateShoppingCartValue();
@@ -34,3 +41,4 @@ $(document).ready(function () {
   })
 
 });
+
