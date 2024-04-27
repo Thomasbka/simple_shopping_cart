@@ -2,3 +2,9 @@
   background-color: rgb(102, 101, 101);
   color: white;
 }
+
+#shoppingCart {
+  margin-top: 40px;
+  color: red;
+  font-size: 25px;
+  }
